@@ -10,7 +10,7 @@
                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
                     data-bs-target="#navs-justified-home" aria-controls="navs-justified-home" aria-selected="true">
                     <i class="tf-icons bx bx-home"></i> Profile
-                    <!-- <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span> -->
+                   
                 </button>
             </li>
             <li class="nav-item">
