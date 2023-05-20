@@ -57,7 +57,7 @@
     <footer>
         <div class="card-header d-flex justify-content-between align-items-center">       
             ©<script>document.write(new Date().getFullYear());</script>- All Copyrights Reserved
-            <h6>Email us on - Support@hifimoney.in</h6>
+            <h6>Email us - Support@hifimoney.in</h6>
         </div>
     </footer>
 @include('layouts.webfooter')
