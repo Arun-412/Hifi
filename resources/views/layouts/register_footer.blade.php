@@ -1,5 +1,5 @@
  <!-- Footer -->
- <footer class="content-footer footer bg-footer-theme">
+ <!-- <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
                   ©
@@ -13,7 +13,7 @@
                   <a class="footer-link fw-bolder">support@hifimoney.in</a>
                 </div>
               </div>
-            </footer>
+            </footer> -->
             <!-- / Footer -->
 <div class="layout-overlay layout-menu-toggle"></div>
 
@@ -57,6 +57,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.js"></script>
 
     <script src="{{asset('assets/js/master.js')}}"></script>
+    <script src="{{asset('assets/js/admin/login.js')}}"></script>
 
   </body>
 </html>

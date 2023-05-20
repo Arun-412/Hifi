@@ -1,6 +1,19 @@
 $(document).ready(function () {
 
-    $('#example').DataTable();
+    var t = $('#example').DataTable();
+    var counter = 1;
+ 
+    $('#addRow').on('click', function () {
+        t.row.add([counter + '.1', counter + '.2', counter + '.3', counter + '.4', counter + '.5']).draw(false);
+ 
+        counter++;
+    });
+
+    $('#signup').on('click', function () {
+        $('#signup').text("Verify OTP");
+      
+    });
+ 
     $("#manage_Retailer").hide();
     $("#r_profile_form :input").prop("disabled", true);
     $("#r_profile_action :input").prop("disabled", false);
@@ -56,6 +69,5 @@ $('#r_profile_edit').on('click', function () {
 $('#d_profile_edit').on('click', function () {
     $("#d_profile_form :input").prop("disabled", false);
 });
-
 
 

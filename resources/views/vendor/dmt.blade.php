@@ -7,16 +7,61 @@
                 <div class="col-md-12">
 <div class="card mb-4">
                     <h5 class="card-header">Manage DMT</h5>
-                    <!-- Account -->
+                  
                     <hr class="my-0" />
                     <div class="card-body">
-                    <figure class="text-center mt-2">
-                        <blockquote class="blockquote">
-                          <p class="mb-0">A well-known quote, contained in a blockquote element.</p>
-                        </blockquote>
-                      </figure>
+                    <div class="col-xl-12 col-md-12">
+            @include('vendor.dmtplan')
+            <div>
+              <div class="card-body">
+                <div>
+                  <table id="example" class="ui celled table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Wallet Balance</th>
+                        <th>Distributor</th>
+                        <th>Commission</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr>
+                        <td><strong>Vinoth Kumar M</strong></td>
+                        <td>₹1001.00</td>
+                        <td>Vinoth Kumar M</td>
+                        <td>Retailer</td>
+                        <td><span class="badge bg-label-primary me-1">Active</span></td>
+                      </tr>
+                      <tr>
+                        <td> <strong>Vinoth Kumar M</strong></td>
+                        <td>₹1002.00</td>
+                        <td>Vinoth Kumar M</td>
+                        <td>Retailer</td>
+                        <td><span class="badge bg-label-primary me-1">Active</span></td>
+                      </tr>
+                      <tr>
+                        <td> <strong>Vinoth Kumar M</strong></td>
+                        <td>₹1003.00</td>
+                        <td>Vinoth Kumar M</td>
+                        <td>Retailer</td>
+                        <td><span class="badge bg-label-primary me-1">Active</span></td>
+                      </tr>
+                      <tr>
+                        <td> <strong>Vinoth Kumar M</strong></td>
+                        <td>₹1004.00</td>
+                        <td>Vinoth Kumar M</td>
+                        <td>Retailer</td>
+                        <td><span class="badge bg-label-primary me-1">Active</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
                     </div>
-                    <!-- /Account -->
+                  
                   </div>
 </div></div></div>
 @endsection

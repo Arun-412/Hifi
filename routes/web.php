@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes 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
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('hifi');
 });
+
+Route::get('/admin',  ['as'=>'admin.login','uses'=>'UserController@admin_login']);
+Route::get('/admin/register',  ['as'=>'admin.register','uses'=>'UserController@admin_register']);
+Route::get('/admin/viewverifyOtp',  ['as'=>'admin.viewverifyOtp','uses'=>'UserController@admin_viewverifyOtp']);
+Route::get('/admin/verifyOtp',  ['as'=>'admin.verifyOtp','uses'=>'UserController@admin_verifyOtp']);
 
 Route::get('/admin/dashboard',  ['as'=>'admin.dashboard','uses'=>'PageController@admin_dashboard']);
 Route::get('/admin/dmt',  ['as'=>'admin.dmt','uses'=>'PageController@admin_dmt']);
 Route::get('/admin/user',  ['as'=>'admin.user','uses'=>'PageController@admin_user']);
-Route::get('/admin/payment',  ['as'=>'admin.payment','uses'=>'PageController@admin_payment']);
 Route::get('/admin/api',  ['as'=>'admin.api','uses'=>'PageController@admin_api']);
 Route::get('/admin/report',  ['as'=>'admin.report','uses'=>'PageController@admin_report']);
 
