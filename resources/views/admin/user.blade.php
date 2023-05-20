@@ -127,6 +127,38 @@
                   </div>
                   <div class="row">
                     <div class="mb-3 col-xl-6 col-md-6">
+                            <label for="exampleFormControlSelect1" class="form-label">DMT Plan</label>
+                            <select class="form-select" id="exampleFormControlSelect1"
+                                aria-label="Default select example">
+                                <!-- <option selected>Open this select menu</option> -->
+                                <option selected value="1">Retailer</option>
+                                <option value="2">Distributor</option>
+                                <option value="3">Master</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-xl-6 col-md-6">
+                      <label class="form-label" for="basic-icon-default-cpassword">Services</label>
+                      <div class="row" style="margin:7px 0px;">
+                      <div class="form-check form-switch col-lg-4 ml-5 col-md-4 ">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Money Transfer</label>
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked />
+
+                        </div>
+                        <div class="form-check form-switch  col-lg-4 col-md-4">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">BBPS</label>
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked />
+
+                        </div>
+                        <div class="form-check form-switch  col-lg-4 col-md-4">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Recharge</label>
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked />
+
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="mb-3 col-xl-6 col-md-6">
                       <label class="form-label" for="basic-icon-default-password">Status</label>
                       <div>
                         <div class="form-check form-check-inline">
@@ -162,7 +194,29 @@
                       </div>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                  <div class="row">
+                  <div class="mb-3 col-xl-6 col-md-6">
+                            <label for="exampleFormControlSelect1" class="form-label">Assign Distributor</label>
+                            <select class="form-select" id="exampleFormControlSelect1"
+                                aria-label="Default select example">
+                                <!-- <option selected>Open this select menu</option> -->
+                                <option selected value="1">Retailer</option>
+                                <option value="2">Distributor</option>
+                                <option value="3">Master</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-xl-6 col-md-6">
+                            <label for="exampleFormControlSelect1" class="form-label">Assign Master</label>
+                            <select class="form-select" id="exampleFormControlSelect1"
+                                aria-label="Default select example">
+                                <!-- <option selected>Open this select menu</option> -->
+                                <option selected value="1">Retailer</option>
+                                <option value="2">Distributor</option>
+                                <option value="3">Master</option>
+                            </select>
+                        </div>
+                  </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
                     Add User
                   </button>
                 </form>
@@ -197,37 +251,37 @@
                   <table id="example" class="ui celled table">
                     <thead>
                       <tr>
-                        <th>Name</th>
+                        <th>Retailer Name</th>
                         <th>Wallet Balance</th>
-                        <th>Distributor</th>
-                        <th>Commission</th>
-                        <th>Status</th>
+                        <th>Distributor Name</th>
+                        <th>Commission Plan</th>
+                        <th>Account Status</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <tr>
-                        <td><strong>Vinoth Kumar M</strong></td>
+                        <td><strong>KPT Hifi</strong></td>
                         <td>₹1001.00</td>
                         <td>Vinoth Kumar M</td>
                         <td>Retailer</td>
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                       </tr>
                       <tr>
-                        <td> <strong>Vinoth Kumar M</strong></td>
+                        <td> <strong>Vagai HIFI</strong></td>
                         <td>₹1002.00</td>
                         <td>Vinoth Kumar M</td>
                         <td>Retailer</td>
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                       </tr>
                       <tr>
-                        <td> <strong>Vinoth Kumar M</strong></td>
+                        <td> <strong>Arasur Hifi</strong></td>
                         <td>₹1003.00</td>
                         <td>Vinoth Kumar M</td>
                         <td>Retailer</td>
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                       </tr>
                       <tr>
-                        <td> <strong>Vinoth Kumar M</strong></td>
+                        <td> <strong>KPT Hifi 2</strong></td>
                         <td>₹1004.00</td>
                         <td>Vinoth Kumar M</td>
                         <td>Retailer</td>
@@ -249,11 +303,11 @@
                   <table id="managedistributor" class="ui celled table">
                     <thead>
                       <tr>
-                        <th>Name</th>
+                        <th>Distributer Name</th>
                         <th>Wallet Balance</th>
-                        <th>Distributor</th>
-                        <th>Commission</th>
-                        <th>Status</th>
+                        <th>Master Name</th>
+                        <th>Commission Plan</th>
+                        <th>Account Status</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -261,28 +315,28 @@
                         <td><strong>Vinoth Kumar M</strong></td>
                         <td>₹1001.00</td>
                         <td>Vinoth Kumar M</td>
-                        <td>Retailer</td>
+                        <td>Distributer</td>
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                       </tr>
                       <tr>
                         <td> <strong>Vinoth Kumar M</strong></td>
                         <td>₹1002.00</td>
                         <td>Vinoth Kumar M</td>
-                        <td>Retailer</td>
+                        <td>Distributer</td>
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                       </tr>
                       <tr>
                         <td> <strong>Vinoth Kumar M</strong></td>
                         <td>₹1003.00</td>
                         <td>Vinoth Kumar M</td>
-                        <td>Retailer</td>
+                        <td>Distributer</td>
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                       </tr>
                       <tr>
                         <td> <strong>Vinoth Kumar M</strong></td>
                         <td>₹1004.00</td>
                         <td>Vinoth Kumar M</td>
-                        <td>Retailer</td>
+                        <td>Distributer</td>
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                       </tr>
                     </tbody>

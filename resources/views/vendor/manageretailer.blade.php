@@ -1,6 +1,6 @@
-<div id="manage_Distributor">
-<span>
-        <i id="user_data_back1" class='bx bx-md bx-arrow-back'></i>
+<div id="manage_Retailer">
+    <span>
+        <i id="user_data_back" class='bx bx-md bx-arrow-back'></i>
         <span class="manage_retailer">Manage <span id="user_data"></span></span>
         <div class="form-check form-switch" style="float:right;">
             <label class="form-check-label" for="flexSwitchCheckChecked">Account Status</label>
@@ -14,7 +14,7 @@
             <label class="form-check-label" for="flexSwitchCheckChecked">Amount</label>
             <div class="input-group input-group-merge">
                 <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-rupee"></i></span>
-                <input type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Enter Amount"
+                <input type="text" class="form-control" id="basic-icon-default-fullname" placeholder="John Doe"
                     aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
             </div>
             <div id="defaultFormControlHelp" class="form-text">
@@ -22,11 +22,11 @@
             </div>
         </div>
         <div class="form-check form-switch col-lg-3 col-md-3">
-            <label for="exampleFormControlSelect1" class="form-label mb-0">Action Type</label>
+            <label for="exampleFormControlSelect1" class="form-label mb-0">DMT Plan</label>
             <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                <option selected value="1">Debit</option>
-                <option value="2">Credit</option>
-                <option value="3">Hold</option>
+                <option selected value="1">Retailer</option>
+                <option value="2">Distributor</option>
+                <option value="3">Master</option>
             </select>
         </div>
         <div class="form-check form-switch col-lg-3 col-md-3">

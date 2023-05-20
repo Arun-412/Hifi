@@ -139,7 +139,7 @@
 }
 
 .manage_retailer {
-  float: right;
+    margin-left: 25px;
     font-weight: 800;
     font-size: 20px;
     color: #5f61e6;

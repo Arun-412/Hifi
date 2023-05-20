@@ -6,17 +6,14 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller 
 {
-    function admin_dmt (Request $request) {
-        return view('admin.dmt');
-    }
     function admin_dashboard (Request $request) {
         return view('admin.dashboard');
     }
+    function admin_dmt (Request $request) {
+        return view('admin.dmt');
+    }
     function admin_user (Request $request) {
         return view('admin.user');
-    }
-    function admin_payment (Request $request) {
-        return view('admin.payment');
     }
     function admin_api (Request $request) {
         return view('admin.api');
