@@ -56,7 +56,7 @@
     </section>
     <footer>
         <div class="card-header d-flex justify-content-between align-items-center">       
-            ©<script>document.write(new Date().getFullYear());</script>- All Copyrights Reserved
+            ©<script>document.write(new Date().getFullYear());</script>- All Copyrights Reserved by HIFI Technologies
             <h6>Email us - Support@hifimoney.in</h6>
         </div>
     </footer>
