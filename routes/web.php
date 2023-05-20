@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('hifi');
+    return view('hifimoney');
 });
 
 Route::get('/admin',  ['as'=>'admin.login','uses'=>'UserController@admin_login']);
