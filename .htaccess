@@ -5,7 +5,6 @@
 
 # RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
 
-
 RewriteEngine on
 RewriteCond %{REQUEST_URI} !^public
 RewriteRule ^(.*)$ public/$1 [L]
