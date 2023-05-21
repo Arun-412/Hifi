@@ -1,7 +1,7 @@
 @include('layouts.webheader')
     <div class="card-header d-flex justify-content-between align-items-center">
         <h2 class="mb-0" style="color:#5f61e6;">HIFI Money</h2>
-        <a href="{{route('admin.login')}}" class="menu-link btn btn-outline-primary">Login</a>
+        <a href="{{route('auth.login')}}" class="menu-link btn btn-outline-primary">Login</a>
     </div>
     <section class="container">
         <h2 style="text-align:center; margin-bottom:5vh;">Our Branches</h2>
