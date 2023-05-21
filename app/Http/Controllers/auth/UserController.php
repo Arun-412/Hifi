@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\auth;
+use Auth;
 use App\Models\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    function admin_register (Request $request) {
-        return view('admin.register');
+    function register (Request $request) {
+        return view('auth.register');
     }
-    function admin_login (Request $request) {
-        return view('admin.login');
+    function login (Request $request) {
+        return view('auth.login');
     }
-    function admin_viewverifyOtp (Request $request) {
+    function authentication (Request $request) {
         // $validate = Validator::make($request->all(), [
         //     'username' => 'required|string|min:3|max:20',
         //     'phone_number' => 'required|string|min:10|max:10',
@@ -50,9 +50,9 @@ class UserController extends Controller
         //         return response()->json($exception->getMessage());
         //         } 
         //     }         
-        return view('admin.verifyOtp');
+        return view('auth.verifyOtp');
     }
-    function admin_verifyOtp (Request $request) {
+    function verifyOtp (Request $request) {
         return view('admin.dashboard');
     }
 }
