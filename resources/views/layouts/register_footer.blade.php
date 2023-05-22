@@ -58,6 +58,7 @@
 
     <script src="{{asset('assets/js/master.js')}}"></script>
     <script src="{{asset('assets/js/admin/login.js')}}"></script>
+    <script src="{{asset('assets/toast/jquery.toast.js')}}"></script>
 
   </body>
 </html>

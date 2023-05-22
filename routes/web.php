@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/login',  ['as'=>'auth.login','uses'=>'auth\UserController@login']);
 Route::get('/register',  ['as'=>'auth.register','uses'=>'auth\UserController@register']);
-Route::get('/authentication',  ['as'=>'auth.authentication','uses'=>'auth\UserController@authentication']);
+Route::post('/authentication',  ['as'=>'auth.authentication','uses'=>'auth\UserController@authentication']);
 Route::get('/verifyOtp',  ['as'=>'auth.verifyOtp','uses'=>'auth\UserController@verifyOtp']);
 
 Route::get('/admin/dashboard',  ['as'=>'admin.dashboard','uses'=>'PageController@admin_dashboard']);

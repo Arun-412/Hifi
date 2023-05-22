@@ -57,6 +57,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.js"></script>
 
     <script src="{{asset('assets/js/master.js')}}"></script>
+    <script src="{{asset('assets/toast/jquery.toast.js')}}"></script>
 
   </body>
 </html>
