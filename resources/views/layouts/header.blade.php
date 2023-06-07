@@ -17,7 +17,6 @@
     <title>HIFI Money</title>
 
     <meta name="description" content="" />
-
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{asset('assets/img/favicon/favicon.ico')}}"/>
 
@@ -42,6 +41,7 @@
 
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/toast/jquery.toast.css')}}" />
 
     <!-- Page CSS -->
 
@@ -63,5 +63,5 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
-    
+        <div id="loading" style=></div>
         

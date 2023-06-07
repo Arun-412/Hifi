@@ -23,18 +23,17 @@ class user extends Model
         "phone_verify",
         "phone_otp",
         "password",
+        "access_token",
         "address",
         "dmt_plan",
         "account_status",
         "account_type",
         "managed_by",
-        "aadhar_number",
-        "aadhar_photo",
-        "pan_number",
-        "pan_photo",
-        "photo"
 	];
     protected $hidden = [
-        'password'
+        'password',
+        'access_token',
+        'phone_otp',
+        'email_otp',
     ];
 }
