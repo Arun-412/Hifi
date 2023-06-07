@@ -9,18 +9,21 @@ class PageController extends Controller
     function admin_dashboard (Request $request) {
         return view('admin.dashboard');
     }
-    // function admin_dmt (Request $request) {
-    //     return view('admin.dmt');
-    // }
-    // function admin_user (Request $request) {
-    //     return view('admin.user');
-    // }
-    // function admin_api (Request $request) {
-    //     return view('admin.api');
-    // }
-    // function admin_report (Request $request) {
-    //     return view('admin.report');
-    // }
+    function admin_dmt (Request $request) {
+        return view('admin.dmt');
+    }
+    function admin_user (Request $request) {
+        return view('admin.user');
+    }
+    function admin_api (Request $request) {
+        return view('admin.api');
+    }
+    function admin_service (Request $request) {
+        return view('admin.service');
+    }
+    function admin_report (Request $request) {
+        return view('admin.report');
+    }
 
     // function vendor_dmt (Request $request) {
     //     return view('vendor.dmt');

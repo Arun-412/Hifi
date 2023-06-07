@@ -28,6 +28,7 @@ Route::get('/admin/dashboard',  ['as'=>'admin.dashboard','uses'=>'PageController
 Route::get('/admin/dmt',  ['as'=>'admin.dmt','uses'=>'PageController@admin_dmt']);
 Route::get('/admin/user',  ['as'=>'admin.user','uses'=>'PageController@admin_user']);
 Route::get('/admin/api',  ['as'=>'admin.api','uses'=>'PageController@admin_api']);
+Route::get('/admin/service',  ['as'=>'admin.service','uses'=>'PageController@admin_service']);
 Route::get('/admin/report',  ['as'=>'admin.report','uses'=>'PageController@admin_report']);
 
 // Route::get('/vendor/dashboard',  ['as'=>'vendor.dashboard','uses'=>'PageController@vendor_dashboard']);

@@ -4,8 +4,8 @@
 			'dashboard'		=> array('admin/dashboard'),
             'dmt'		=> array('admin/dmt'),
             'user'		=> array('admin/user'),
-            'payment'		=> array('admin/payment'),
             'api'		=> array('admin/api'),
+            'service'		=> array('admin/service'),
             'report'		=> array('admin/report'),
 		);
 		foreach($path_config as $key=> $val)
@@ -98,6 +98,12 @@
             <a href="{{route('admin.api')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">API</div>
+            </a>
+        </li>
+        <li class="{{$current_path == 'service' ? 'menu-item active' : 'menu-item'}}">
+            <a href="{{route('admin.service')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Services</div>
             </a>
         </li>
         <li class="{{$current_path == 'report' ? 'menu-item active' : 'menu-item'}}">
