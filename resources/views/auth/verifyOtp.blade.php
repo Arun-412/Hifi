@@ -66,30 +66,44 @@
                   <span class="app-brand-text demo text-body fw-bolder">HIFI Money</span>
                 </a>
               </div>
-              <!-- /Logo -->
+              <!-- /Logo action="{{route('admin.dashboard')}}" method="get" -->
               <h4 class="mb-2">Verification</h4>
-              <p class="mb-4">OTP has beed sent to +91 9994399433!</p>
-
-              <form id="formAuthentication" class="mb-3" action="{{route('admin.dashboard')}}" method="get">           
-                
+              @if(session('failed'))
+						<div style="background-color:red;color:white;font-weight:800;padding:10px;border-radius:5px;">
+							{{ session('failed') }}
+						</div>
+					@endif
+            <p>OTP has been sent to {{str_replace(range(0,9), "*", substr($user, 0, -2)) .  substr($user, -2)}}</p>
+              <form id="formAuthentication" class="mb-3" action="{{route('auth.Otp')}}" method="POST">  
+              {{ csrf_field() }}          
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">Enter OTP</label>
                   <div class="input-group input-group-merge">
+                 
                     <input
                       type="password"
-                      id="password"
+                      id="verify_otp"
                       class="form-control"
-                      name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                      name="verify_otp"
+                      placeholder="Enter your OTP"
                       aria-describedby="password"
+                      maxlength="6" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '')"
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
+                 
+                  <?php if ($errors->isEmpty()) { ?>
+                    <p id="verify_otp_check" class="validation"></p>
+                 <?php } else {?>
+                  @error('username')
+                  <p id="verify_otp_check" class="validation">{{$message}}</p>
+                  @enderror
+                  <?php } ?>
                 </div>
-                
-
-            
+                  <input type="hidden" id="access" name="access" value="{{$key}}" />
+                  <input type="hidden" id="type" name="type" value="{{$type}}" />
                 <button id="verifyOtp" class="btn btn-primary d-grid w-100">Verify OTP</button>
+                
               </form>
 
               

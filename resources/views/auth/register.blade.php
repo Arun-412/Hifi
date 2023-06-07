@@ -66,12 +66,18 @@
                   <span class="app-brand-text demo text-body fw-bolder">HIFI Money</span>
                 </a>
               </div>
-              <!-- /Logo action="{{route('auth.authentication')}}" method="get" -->
+              <!-- /Logo  -->
               <h4 class="mb-2">Adventure starts here 🚀</h4>
-              <p class="mb-4">Make your app management easy and fun!</p>
+              <p class="mb-4">Make your app management easy and fun!</p>           
+					@if(session('failed'))
+						<div style="background-color:red;color:white;font-weight:800;padding:10px;border-radius:5px;">
+							{{ session('failed') }}
+						</div>
+					@endif
 
-              <form id="formAuthentication" class="mb-3">
-                <div class="mb-3">
+              <form id="formAuthentication" class="mb-3" action="{{route('auth.authentication')}}" method="POST">
+              @csrf  
+              <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
                   <input
                     type="text"
@@ -81,8 +87,15 @@
                     placeholder="Enter your username"
                     autofocus
                     autocomplete="off"
+                    value="{{old('username')}}"
                   />
+                 <?php if ($errors->isEmpty()) { ?>
                   <p id="username_check" class="validation"></p>
+                 <?php } else {?>
+                  @error('username')
+                  <p id="username_check" class="validation">{{$message}}</p>
+                  @enderror
+                  <?php } ?>
                 </div>
                 <div class="mb-3">
                 
@@ -90,15 +103,30 @@
                       <div class="input-group input-group-merge">
                         <span id="basic-icon-default-phone2" class="input-group-text"><i class="bx bx-phone"></i></span>
                         <input type="text" name="phone_number" id="phone_number" class="form-control phone-mask"
-                          placeholder="658 799 8941" aria-label="658 799 8941"
-                          aria-describedby="basic-icon-default-phone2" maxlength="10" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" />
+                          placeholder="Enter your phone number" aria-label="Enter your phone number"
+                          aria-describedby="basic-icon-default-phone2" maxlength="10" value="{{old('phone_number')}}" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" />
                       </div>
-                      <p id="phone_number_check" class="validation"></p>
+                      <?php if ($errors->isEmpty()) { ?>
+                  <p id="phone_number_check" class="validation"></p>
+                 <?php } else {?>
+                  @error('phone_number')
+                  <p id="phone_number_check" class="validation">{{$message}}</p>
+                  @enderror
+                  <?php } ?>
+                    
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" autocomplete="off" id="email" name="email" placeholder="Enter your email" />
+                  <input type="text" class="form-control" value="{{old('email')}}" autocomplete="off" id="email" name="email" placeholder="Enter your email" />
+                  <?php if ($errors->isEmpty()) { ?>
                   <p id="email_check" class="validation"></p>
+                 <?php } else {?>
+                  @error('email')
+                  <p id="email_check" class="validation">{{$message}}</p>
+                  @enderror
+                  <?php } ?>
+                 
+                 
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">Password</label>
@@ -110,12 +138,20 @@
                       name="password"
                       placeholder="Enter your password"
                       aria-describedby="password"
+                      value="{{old('password')}}"
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
+                  <?php if ($errors->isEmpty()) { ?>
                   <p id="password_check" class="validation"></p>
+                 <?php } else {?>
+                  @error('password')
+                  <p id="password_check" class="validation">{{$message}}</p>
+                  @enderror
+                  <?php } ?>
+                 
                 </div>
-                <button type="button" id="signup" class="btn btn-primary d-grid w-100">Sign up</button>
+                <button id="signup" class="btn btn-primary d-grid w-100">Sign up</button>
               </form>
               <p class="text-center">
                 <span>Already have an account?</span>
@@ -130,4 +166,5 @@
         </div>
       </div>
     </div> 
+  
 @include('layouts.register_footer')

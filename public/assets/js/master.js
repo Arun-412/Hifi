@@ -1,4 +1,17 @@
 $(document).ready(function () {
+  function checkInternetConnection(){
+    var status = navigator.onLine;
+  if (status) {
+      $(':button').prop('disabled', false);
+    } else {
+      $(':button').prop('disabled', true);
+      $.toast({ text: 'Kindly Check your Internet Connection', heading: 'Internet Disconnected', icon: 'error', showHideTransition: 'fade', allowToastClose: false, hideAfter: 1000, stack: false, position: 'top-right', textAlign: 'left', loader: false, loaderBg: '#9EC600' });
+    }  
+    setTimeout(function() {
+        checkInternetConnection();
+    }, 1000);
+  }
+  checkInternetConnection();
 
     $("#loading").fadeOut("slow");
 
@@ -25,9 +38,26 @@ let usernameError = true;
 let phone_numberError = true;
 let emailError = true;
 let passwordError = true;
+let verify_otpError = true;
+let loginPasswordError = true;
+let loginUsernameError = true;
+
+$("#login_username").keyup(function () {
+    validateLoginUsername();
+});
+
+$("#login_password").keyup(function () {
+  validateLoginPassword();
+});
 
 $("#username").keyup(function () {
-    validateUsername();
+  validateUsername();
+});
+
+$("#verify_otp").keyup(function () {
+  var newotp = $(this).val().replace(".", ""); 
+	$(this).val(newotp); 
+  validateOtp();
 });
 
 $("#phone_number").keyup(function () {
@@ -41,6 +71,44 @@ $("#email").keyup(function () {
 $("#password").keyup(function () {
     validatePassword();
 });
+
+function validateLoginUsername() {
+  let loginUsernameValue = $("#login_username").val();
+  if (loginUsernameValue.length === "" || $.trim(loginUsernameValue) === "") {
+    $("#login_username_check").html("phone number or username is required");
+    $("#login_username").focus();
+    loginUsernameError = false;
+    return false;
+  } else if (loginUsernameValue.length < 3 || loginUsernameValue.length > 10) {
+    $("#login_username_check").show();
+    $("#login_username_check").html("Length of phone number or username must be between 3 and 10");
+    $("#login_username").focus();
+    loginUsernameError = false;
+    return false;
+  } else {
+    loginUsernameError = true;
+    $("#login_username_check").hide();
+  }
+}
+
+function validateLoginPassword() {
+  let loginPasswordValue = $("#login_password").val();
+  if (loginPasswordValue.length === "" || $.trim(loginPasswordValue) === "") {
+    $("#login_password_check").html("Password is required");
+    $("#login_password").focus();
+    loginPasswordError = false;
+    return false;
+  } else if (loginPasswordValue.length < 8 || loginPasswordValue.length > 20) {
+    $("#login_password_check").show();
+    $("#login_password_check").html("Length of Password must be between 8 and 20");
+    $("#login_password").focus();
+    loginPasswordError = false;
+    return false;
+  } else {
+    loginPasswordError = true;
+    $("#login_password_check").hide();
+  }
+}
 
 function validateUsername() {
     let usernameValue = $("#username").val();
@@ -80,6 +148,27 @@ function validatePhoneNumber() {
       $("#phone_number_check").hide();
     }
 }
+
+function validateOtp() {
+   
+  let verify_otpValue = $("#verify_otp").val();
+  if (verify_otpValue.length == "") {
+    $("#verify_otp_check").html("OTP is required");
+    $("#verify_otp").focus();
+    verify_otpError = false;
+    return false;
+  } else if (verify_otpValue.length < 6 || verify_otpValue.length > 6 ) {
+    $("#verify_otp_check").show();
+    $("#verify_otp_check").html("Length of OTP must be between 6 digits");
+    $("#verify_otp").focus();
+    verify_otpError = false;
+    return false;
+  } else {
+    verify_otpError = true;
+    $("#verify_otp_check").hide();
+  }
+}
+
 
 function validateEmail() {
     let emailValue = $("#email").val();
@@ -133,48 +222,104 @@ $('#signup').on('click', function () {
       usernameError === true && phone_numberError === true && emailError === true &&
       passwordError === true
     ) {
-        registeration();
+        return true;
     } else {
       return false;
     }
 });
 
-function registeration (register) {
-    $.ajax({
-        type: "POST",
-        url: "authentication",
-        data: {
-            "username" : $("#username").val(),
-            "phone_number" : $("#phone_number").val(),
-            "email" : $("#email").val(),
-            "password" : $("#password").val(),
-        },
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            "Content-Type": "application/json",
-        },
-        success: function (data) {
-            console.log(data);
-            // if(data.success){
-            //     $.toast({ text: data.success, heading: 'Success', icon: 'success', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
-            //     $("#loading").fadeOut("slow");
-            //     window.location.href = "verifyOtp";
-            // }
-            // else{
-            //     $.toast({ text: "Something went wrong!", heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
-            // }
-         
-         
-        },
-        error: function (jqXHR, exception) {
-           $("#loading").fadeOut("slow");
-           var response = jqXHR.responseText;
-           var obj = JSON.parse(response);
-           var message = obj.message;
-           $.toast({ text: message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
-        }
-     }); 
-}
+$('#verifyOtp').on('click', function () {
+  validateOtp();
+  if (verify_otpError === true) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+$('#login_btn').on('click', function () {
+  validateLoginUsername();
+  validateLoginPassword()
+  if (loginUsernameError === true && loginPasswordError === true) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+// function otpvalidation () { 
+//   $.ajax({
+//     type: "GET",
+//     url: "verifyOtp",
+//     data: {
+//       "type":"verify",
+//       "key" : $('#temp').val(),
+//       "_token": "{{ csrf_token() }}",
+//       "otp" :  $("#verify_otp").val(),
+//     },
+//     dataType: 'json',
+   
+//     success: function (data) {
+//         console.log(data);
+//         if(data.status == true){
+//             $.toast({ text: data.message, heading: 'Success', icon: 'success', showHideTransition: 'fade', allowToastClose: true, hideAfter: 10000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+//             $("#loading").fadeOut("slow");
+//             window.location.href = "admin/dashboard";
+//         }
+//         else{               
+//             $.toast({ text: data.message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 10000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+//         }
+//     },
+//     error: function (jqXHR, exception) {
+//        $("#loading").fadeOut("slow");
+//        var response = jqXHR.responseText;
+//        var obj = JSON.parse(response);
+//        var message = obj.message;
+//        $.toast({ text: message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+//     }
+//  }); 
+// }
+
+// function registeration (register) {
+//     $.ajax({
+//         type: "POST",
+//         url: "authentication",
+//         data: {
+//           "username" : $("#username").val(),
+//           "phone_number" : $("#phone_number").val(),
+//           "email" : $("#email").val(),
+//           "password" : $("#password").val(),
+//         },
+//         headers: {
+//           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+//         dataType: 'json', 
+//         success: function (data) {
+//             // console.log(data);
+//             if(data.status == true){
+//                 $.toast({ text: data.message, heading: 'Success', icon: 'success', showHideTransition: 'fade', allowToastClose: true, hideAfter: 10000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+//                 $("#loading").fadeOut("slow");
+//                 // alert(data.token);
+//                 // alert($('#checkt').val());
+//                 // $('#checkt').text(data.token);
+//                 // document.getElementById("checkt").value = data.token;
+//                 // alert($('#checkt').val());
+//                 window.location.href = "verifyOtp/"+data.token;
+//                 // window.location.href = "Otp/token="+data.token;
+//             }
+//             else{               
+//                 $.toast({ text: data.message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 10000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+//             }
+//         },
+//         error: function (jqXHR, exception) {
+//            $("#loading").fadeOut("slow");
+//            var response = jqXHR.responseText;
+//            var obj = JSON.parse(response);
+//            var message = obj.message;
+//            $.toast({ text: message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+//         }
+//      }); 
+// }
 
 $('#example tbody').on('click', 'tr', function () {
 

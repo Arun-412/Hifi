@@ -20,7 +20,9 @@ Route::get('/', function () {
 Route::get('/login',  ['as'=>'auth.login','uses'=>'auth\UserController@login']);
 Route::get('/register',  ['as'=>'auth.register','uses'=>'auth\UserController@register']);
 Route::post('/authentication',  ['as'=>'auth.authentication','uses'=>'auth\UserController@authentication']);
-Route::get('/verifyOtp',  ['as'=>'auth.verifyOtp','uses'=>'auth\UserController@verifyOtp']);
+Route::get('/viewOtp',  ['as'=>'auth.verifyOtp','uses'=>'auth\UserController@viewOtp']);
+Route::post('/Otp',  ['as'=>'auth.Otp','uses'=>'auth\UserController@verifyOtp']);
+Route::post('/verifyUser',  ['as'=>'auth.verifyUser','uses'=>'auth\UserController@verifyUser']);
 
 Route::get('/admin/dashboard',  ['as'=>'admin.dashboard','uses'=>'PageController@admin_dashboard']);
 Route::get('/admin/dmt',  ['as'=>'admin.dmt','uses'=>'PageController@admin_dmt']);
