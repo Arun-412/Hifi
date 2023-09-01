@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class service extends Model
+class provider extends Model
 {
     use HasFactory;
-    protected $table = 'services';
+    protected $table = 'providers';
 	public $timestamps = true;
 	protected $fillable = [
         "user_id",
-        "service_name",
         "provider_name",
-        "fees",
+        "provider_email",
+        "provider_mobile",
         "status" 
 	];
 }

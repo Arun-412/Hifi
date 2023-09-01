@@ -1,4 +1,4 @@
-<div id="manage_Retailer">
+<div id="Manage_Provider">
 
     <span id="user_data_back"><i class='bx bx-md bx-arrow-back'></i><span class="manage_retailer">Manage <span
                 id="user_data"></span></span></span>

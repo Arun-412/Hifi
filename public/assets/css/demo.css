@@ -146,17 +146,55 @@
 }
 
 #loading{
-  z-index:999999;
+  /* z-index:999999;
   display:block;
   position:fixed;
   top:0;
   left:0;
   width:100%;
   height:100%;
-  background:url('../img/loading.gif') 50% 50% no-repeat #cccccc;
+  background:url('../img/loading.gif') 50% 50% no-repeat #cccccc; */
+
+  width:100%;
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;    
+  background-color: rgba(128,128,128,0.7);
+  z-index:9999;
+  display: block; 
+
  }
+
+ #loading::after {
+  content:'';
+  display:block;
+  position:absolute;
+  left:48%;top:40%;
+  width:80px;height:80px;
+  border-style:solid;
+  border: 5px solid #fff;
+  border-top-color: #5f61e6;
+  border-width: 7px;
+  border-radius:50%;
+  -webkit-animation: spin .8s linear infinite;
+  
+  /* Lets make it go round */
+  animation: spin .8s linear infinite;
+}
 
  .validation {
   color:red;
   font-weight: 700;
  }
+
+ /* providers page start  */
+
+.Add_Provider_Btn {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0px 14px 10px 0px !important;
+}
+
+ /* providers page end  */

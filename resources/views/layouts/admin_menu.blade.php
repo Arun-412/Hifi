@@ -6,6 +6,7 @@
             'user'		=> array('admin/user'),
             'api'		=> array('admin/api'),
             'service'		=> array('admin/service'),
+            'provider'		=> array('admin/provider'),
             'report'		=> array('admin/report'),
 		);
 		foreach($path_config as $key=> $val)
@@ -19,7 +20,7 @@
 	?>
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="{{route('admin.dashboard')}}" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -104,6 +105,12 @@
             <a href="{{route('admin.service')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Services</div>
+            </a>
+        </li>
+        <li class="{{$current_path == 'provider' ? 'menu-item active' : 'menu-item'}}">
+            <a href="{{route('admin.provider')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Providers</div>
             </a>
         </li>
         <li class="{{$current_path == 'report' ? 'menu-item active' : 'menu-item'}}">

@@ -1,6 +1,7 @@
 $(document).ready(function () {
+  $('#addRow').show();
   function checkInternetConnection(){
-    var status = navigator.onLine;
+  var status = navigator.onLine;
   if (status) {
       $(':button').prop('disabled', false);
     } else {
@@ -324,12 +325,15 @@ $('#login_btn').on('click', function () {
 $('#example tbody').on('click', 'tr', function () {
 
     var value = $(this).closest("tr").find("td:eq(0)").text();
+    var value2 = $(this).closest("tr").find("td:eq(1)").text();
     $("#example").hide();
     $("#example_wrapper").hide();
     $("#user_data").text(value);
+    $(".provider_name").val(value2);
+    $("#basic-icon-default-fullname").val(value);
     $("#manage_Retailer").show();
     $("#manage_Distributor").show();
-
+    $('#addRow').hide();
 } );
 
 $('#managedistributor tbody').on('click', 'tr', function () {
@@ -343,7 +347,7 @@ $('#managedistributor tbody').on('click', 'tr', function () {
 } );
 
 $('#user_data_back').on('click', function () {
-
+    $('#addRow').show();
     $("#manage_Retailer").hide();
     $("#example").show();
     $("#example_wrapper").show();

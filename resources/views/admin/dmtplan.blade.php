@@ -8,130 +8,107 @@
                     <div class="row">
 
 
-                        <div class="mb-3 col-xl-6 col-md-6">
+                        <div class="mb-3 col-xl-4 col-md-4">
 
                             <label class="form-label" for="basic-icon-default-fullname">Plan Name</label>
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                         class="bx bx-user"></i></span>
                                 <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="John Doe" aria-label="John Doe"
+                                    placeholder="Plan name" aria-label="Plan name"
                                     aria-describedby="basic-icon-default-fullname2" />
                             </div>
                         </div>
-                        <div class="mb-3 col-xl-6 col-md-6">
+                        <div class="mb-3 col-xl-4 col-md-4">
 
-                            <label class="form-label" for="basic-icon-default-fullname">DMT Plan Name</label>
+                        <label for="exampleFormControlSelect1" class="form-label">User Type</label>
+                            <select class="form-select" id="exampleFormControlSelect1"
+                                aria-label="Default select example">
+                                <!-- <option selected>Open this select menu</option> -->
+                                <option selected value="1">Retailer</option>
+                                <option value="2">Distributor</option>
+                                <option value="3">Super Distributor</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-xl-4 col-md-4">
+
+                        <label class="form-label" for="basic-icon-default-password">Status</label>
+                      <div>
+                        <div class="form-check form-check-inline mt-2">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                            value="option1" checked />
+                          <label class="form-check-label" for="inlineRadio1">Active</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            value="option2" />
+                          <label class="form-check-label" for="inlineRadio2">In-Active</label>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-xl-3 col-md-3">
+                            <label for="exampleFormControlSelect1" class="form-label">Service Type</label>
+                            <select class="form-select" id="exampleFormControlSelect1"
+                                aria-label="Default select example">
+                                <!-- <option selected>Open this select menu</option> -->
+                                <option selected value="1">Money Transfer</option>
+                                <option value="2">AEPS</option>
+                                <option value="3">Recharge</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-xl-2 col-md-2">
+
+                            <label class="form-label" for="basic-icon-default-fullname">From Amount</label>
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                         class="bx bx-user"></i></span>
                                 <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="John Doe" aria-label="John Doe"
+                                    placeholder="Plan name" aria-label="Plan name"
                                     aria-describedby="basic-icon-default-fullname2" />
                             </div>
                         </div>
+                        <div class="mb-3 col-xl-2 col-md-2">
 
-
-
-
-
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-xl-6 col-md-6">
-                            <label for="exampleFormControlSelect1" class="form-label">Plan List</label>
+                            <label class="form-label" for="basic-icon-default-fullname">To Amount</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                        class="bx bx-user"></i></span>
+                                <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                    placeholder="Plan name" aria-label="Plan name"
+                                    aria-describedby="basic-icon-default-fullname2" />
+                            </div>
+                        </div>
+                        <div class="mb-3 col-xl-1 col-md-1">
+                            <label for="exampleFormControlSelect1" class="form-label">Fees Type</label>
                             <select class="form-select" id="exampleFormControlSelect1"
                                 aria-label="Default select example">
                                 <!-- <option selected>Open this select menu</option> -->
-                                <option selected value="1">Retailer</option>
-                                <option value="2">Distributor</option>
-                                <option value="3">Master</option>
+                                <option selected value="1">₹</option>
+                                <option value="2">%</option>
                             </select>
                         </div>
-                        <div class="mb-3 col-xl-6 col-md-6">
-                            <label for="exampleFormControlSelect1" class="form-label">DMT Plan</label>
-                            <select class="form-select" id="exampleFormControlSelect1"
-                                aria-label="Default select example">
-                                <!-- <option selected>Open this select menu</option> -->
-                                <option selected value="1">Retailer</option>
-                                <option value="2">Distributor</option>
-                                <option value="3">Master</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-3 col-xl-6 col-md-6">
+                        <div class="mb-3 col-xl-2 col-md-2">
 
-                            <label class="form-label" for="basic-icon-default-fullname">Commission 500-3000</label>
-                            <div class="input-group input-group-merge">
-                                <span id="basic-icon-default-fullname2" class="input-group-text">%</span>
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="John Doe" aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2" />
-                            </div>
-                        </div>
-                        <div class="mb-3 col-xl-6 col-md-6">
-
-                            <label class="form-label" for="basic-icon-default-fullname">Commission 3000+</label>
+                            <label class="form-label" for="basic-icon-default-fullname">Fees Amount</label>
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                        class="bx bx-rupee"></i></span>
+                                        class="bx bx-user"></i></span>
                                 <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="John Doe" aria-label="John Doe"
+                                    placeholder="Plan name" aria-label="Plan name"
                                     aria-describedby="basic-icon-default-fullname2" />
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-3 col-xl-6 col-md-6">
-
-                            <label class="form-label" for="basic-icon-default-fullname">Mini Statement</label>
-                            <div class="input-group input-group-merge">
-                                <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                        class="bx bx-rupee"></i></span>
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="John Doe" aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2" />
-                            </div>
-                        </div>
-                        <div class="mb-3 col-xl-6 col-md-6">
-
-                            <label class="form-label" for="basic-icon-default-fullname">Aadhar Pay</label>
-                            <div class="input-group input-group-merge">
-                                <span id="basic-icon-default-fullname2" class="input-group-text">%</span>
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="John Doe" aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-3 col-xl-6 col-md-6">
-
-                            <label class="form-label" for="basic-icon-default-fullname">UPI/QR Withdraw</label>
-                            <div class="input-group input-group-merge">
-                                <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                        class="bx bx-rupee"></i></span>
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="John Doe" aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2" />
-                            </div>
-                        </div>
-                        <div class="mb-3 col-xl-6 col-md-6">
-
-                            <label class="form-label" for="basic-icon-default-fullname">Payout Fees</label>
-                            <div class="input-group input-group-merge">
-                                <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                        class="bx bx-rupee"></i></span>
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="John Doe" aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2" />
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary">
-                        Update
+                        <div class="col-xl-2 col-md-2" style="margin-top:28px;">
+                        <button type="button" class="btn btn-primary">
+                        Add Fees
                     </button>
+                        </div>
+                    </div>
+                   
                     
                 </form>
              

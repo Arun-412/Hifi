@@ -23,40 +23,17 @@
                   <table id="example" class="ui celled table">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Wallet Balance</th>
-                        <th>Distributor</th>
-                        <th>Commission</th>
+                        <th>Plan Name</th>
+                        <th>User Type</th>
+                        <th>Applied for</th>
                         <th>Status</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <tr>
-                        <td><strong>Vinoth Kumar M</strong></td>
-                        <td>₹1001.00</td>
-                        <td>Vinoth Kumar M</td>
+                        <td><strong>Basic Plan</strong></td>
                         <td>Retailer</td>
-                        <td><span class="badge bg-label-primary me-1">Active</span></td>
-                      </tr>
-                      <tr>
-                        <td> <strong>Vinoth Kumar M</strong></td>
-                        <td>₹1002.00</td>
-                        <td>Vinoth Kumar M</td>
-                        <td>Retailer</td>
-                        <td><span class="badge bg-label-primary me-1">Active</span></td>
-                      </tr>
-                      <tr>
-                        <td> <strong>Vinoth Kumar M</strong></td>
-                        <td>₹1003.00</td>
-                        <td>Vinoth Kumar M</td>
-                        <td>Retailer</td>
-                        <td><span class="badge bg-label-primary me-1">Active</span></td>
-                      </tr>
-                      <tr>
-                        <td> <strong>Vinoth Kumar M</strong></td>
-                        <td>₹1004.00</td>
-                        <td>Vinoth Kumar M</td>
-                        <td>Retailer</td>
+                        <td>1</td>
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                       </tr>
                     </tbody>

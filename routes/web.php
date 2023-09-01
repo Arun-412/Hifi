@@ -29,7 +29,10 @@ Route::get('/admin/dmt',  ['as'=>'admin.dmt','uses'=>'PageController@admin_dmt']
 Route::get('/admin/user',  ['as'=>'admin.user','uses'=>'PageController@admin_user']);
 Route::get('/admin/api',  ['as'=>'admin.api','uses'=>'PageController@admin_api']);
 Route::get('/admin/service',  ['as'=>'admin.service','uses'=>'PageController@admin_service']);
+Route::get('/admin/provider',  ['as'=>'admin.provider','uses'=>'admin\ProviderController@admin_provider']);
+Route::post('/admin/add_provider',  ['as'=>'admin.add_provider','uses'=>'admin\ProviderController@add_provider']);
 Route::get('/admin/report',  ['as'=>'admin.report','uses'=>'PageController@admin_report']);
+Route::post('/admin/service_details',  ['as'=>'admin.service_details','uses'=>'admin\ServiceController@service_details']);
 
 // Route::get('/vendor/dashboard',  ['as'=>'vendor.dashboard','uses'=>'PageController@vendor_dashboard']);
 // Route::get('/vendor/dmt',  ['as'=>'vendor.dmt','uses'=>'PageController@vendor_dmt']);
