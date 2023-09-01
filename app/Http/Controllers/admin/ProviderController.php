@@ -15,7 +15,7 @@ class ProviderController extends Controller
             if(!empty(provider::where(['user_id'=>1])->exists())){
                 $providers_list = provider::orderBy('id', 'DESC')->where(['user_id'=>1])->get();
                 // return $providers_list;
-                return view('admin.provider')->with('data',$providers_list);
+                return view('admin.service_provider.provider')->with('data',$providers_list);
             }else{
                 return response()->json(["status"=>false ,'message'=>"User not found"]);
             }

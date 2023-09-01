@@ -22,6 +22,7 @@
                                   class="btn-close"
                                   data-bs-dismiss="modal"
                                   aria-label="Close"
+                                  id="provider_model_close_icon"
                                 ></button>
                               </div>
                               <div class="modal-body">
@@ -29,36 +30,48 @@
                                   <div class="col mb-3">
                                     <label for="nameWithTitle" class="form-label">Provider Name</label>
                                     <input
+                                      autocomplete="off"
+                                      minlength="3"
+                                      maxlength="40"
                                       type="text"
                                       id="Provider_Name"
                                       class="form-control"
                                       placeholder="Enter Provider Name"
                                     />
+                                    <small id="provider_name_check" class="validate"></small>
                                   </div>
                                 </div>
                                 <div class="row g-2">
                                   <div class="col mb-0">
                                     <label for="emailWithTitle" class="form-label">Provider Email</label>
                                     <input
+                                      autocomplete="off"
+                                      minlength="3"
+                                      maxlength="40"
                                       type="text"
                                       id="Provider_Email"
                                       class="form-control"
                                       placeholder="Enter Provider Email"
                                     />
+                                    <small id="provider_email_check" class="validate"></small>
                                   </div>
                                   <div class="col mb-0">
                                     <label for="dobWithTitle" class="form-label">Provider Mobile Number</label>
                                     <input
+                                      autocomplete="off"
+                                      minlength="10"
+                                      maxlength="10"
                                       type="text"
                                       id="Provider_Mobile_Number"
                                       class="form-control"
                                       placeholder="Enter Provider Mobile Number"
                                     />
+                                    <small id="provider_mobile_check" class="validate"></small>
                                   </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                <button type="button" id="provider_model_cancel_btn" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                   Cancel
                                 </button>
                                 <button type="button" id="Add_Provider" class="btn btn-primary">Add Provider</button>

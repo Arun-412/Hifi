@@ -197,4 +197,11 @@
   margin: 0px 14px 10px 0px !important;
 }
 
+.validate {
+  font-weight: 700;
+  color: red;
+  line-height: 18px;
+  font-size: 14px;
+}
+
  /* providers page end  */

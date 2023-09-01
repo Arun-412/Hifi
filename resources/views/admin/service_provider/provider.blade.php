@@ -13,7 +13,7 @@
                     <div class="col-xl-12 col-md-12">
            
               <div class="card-body">
-              @include('admin.provider_model')
+              @include('admin.service_provider.provider_model')
                 <div>                  
                   <table id="Provider_Table_List" class="ui celled table">
                     <thead>
