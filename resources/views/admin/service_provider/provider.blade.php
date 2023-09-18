@@ -18,21 +18,35 @@
                   <table id="Provider_Table_List" class="ui celled table">
                     <thead>
                       <tr>
-                        <th>Provider Name</th>
+                        <th>Name</th>
                         <th>Services</th>
                         <th>Status</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       @foreach($data as $provider)
                         <tr>
-                          <td><strong>{{$provider['provider_name']}}</strong></td>
+                          <td><input type="hidden" id="action_token" value="{{$provider['provider_id']}}"><strong>{{$provider['provider_name']}}</strong></td>
                           <td>{{$provider['status']}}</td>
                           @if($provider['status'] == 1)
-                          <td><span class="badge bg-label-primary me-1">Active</span></td>
+                          <td>
+                          <div class="form-check form-switch mt-1">
+                            <strong><label class="form-check-label" id="provider_handle_label_on" for="provider_handle">ON</label></strong>
+                            <input class="form-check-input" type="checkbox" id="provider_handle_on" checked />
+
+                        </div>
+                          </td>
                           @else
-                          <td><span class="badge bg-label-primary me-1">In-Active</span></td>
+                          <td>
+                          <div class="form-check form-switch mt-1">
+                            <strong><label class="form-check-label" id="provider_handle_label_off" for="provider_handle">OFF</label></strong>
+                            <input class="form-check-input" type="checkbox" id="provider_handle_off" />
+
+                        </div>
+                          </td>
                           @endif
+                          <td><a href="manage_provider/{{$provider['provider_id']}}" id="provider_action_id" class="menu-link">Edit</td>
                         </tr>
                       @endforeach                   
                     </tbody>
@@ -45,4 +59,20 @@
                     <!-- /Account -->
                   </div>
 </div></div></div>
+<div class="col-lg-12 col-md-12">
+                      <div>
+                        <!-- Button trigger modal -->
+                  
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="Confirmation_model" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                             
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            <div>
 @endsection

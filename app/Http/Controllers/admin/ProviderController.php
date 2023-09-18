@@ -33,7 +33,7 @@ class ProviderController extends Controller
             $validate = Validator::make($request->all(), [
                 'Provider_Name' => 'required|string|min:3|max:40',
                 'Provider_Email' => 'required|email|max:40',
-                'Provider_Mobile_Number' => 'required|string|min:10|max:10',
+                'Provider_Mobile_Number' => 'required|numeric|digits:10',
             ],);
             if($validate->fails()){
                 return response()->json(["status"=>false , "message" => $validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
@@ -50,6 +50,7 @@ class ProviderController extends Controller
             else{
                 $add_provider = new provider;
                 $add_provider->user_id = 1;
+                $add_provider->provider_id = substr(md5(microtime()), 0, 6);
                 $add_provider->provider_name = $request->Provider_Name;
                 $add_provider->provider_email = $request->Provider_Email;
                 $add_provider->provider_mobile = $request->Provider_Mobile_Number;
@@ -64,5 +65,44 @@ class ProviderController extends Controller
         catch (\Illuminate\Database\QueryException $exception ){
             return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
         }   
+    }
+
+    public function provider_status(Request $request){
+        try{
+            $validate = Validator::make($request->all(), [
+                'status' => 'required|numeric|digits:1',
+                'provider_id'=> 'required|string|min:6|max:6'
+            ],);
+            if($validate->fails()){
+                return response()->json(["status"=>false , "message" => $validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            }
+            else if(!empty(provider::where(['provider_id'=>$request->provider_id])->exists())){
+                $provider = provider::where(['provider_id'=>$request->provider_id])->first();
+                $provider->status = $request->status;
+                $provider->save();
+                return response()->json(["status"=>true , "message"=>'Provider Turned OFF successfully']);
+            }
+            else{
+                return response()->json(["status"=>false , "message"=>"Provider not found"]);
+            }
+        }
+        catch(\Exception $exception){
+            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
+        } 
+        catch (\Illuminate\Database\QueryException $exception ){
+            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
+        }   
+    }
+
+    public function manage_provider($provider_id){
+        // echo $provider_id;
+        return view('admin.service_provider.manage_provider')->with('data',$provider_id);
+        // return view('admin.service_provider.manage_provider');
+    }
+
+    public function services(Request $request){
+        // echo $provider_id;
+        return view('admin.service_provider.services');
+        // return view('admin.service_provider.manage_provider');
     }
 }

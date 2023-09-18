@@ -139,7 +139,7 @@ function provider_mobile_validation() {
         Provider_Mobile_Error = true;
         $('#provider_mobile_check').show();
         $('#provider_mobile_check').text('Please Enter Provider Mobile Number');
-    }else if(Provider_Mobile.length < 9 || Provider_Mobile.length > 10){
+    }else if(Provider_Mobile.length < 10 || Provider_Mobile.length > 10){
         Provider_Mobile_Error = true;
         $('#provider_mobile_check').show();
         $('#provider_mobile_check').text('Length of Provider Mobile Number must be 10 digit');
@@ -148,5 +148,168 @@ function provider_mobile_validation() {
         $('#provider_mobile_check').hide();
     }
 }
+
+let selected_provider = "";
+
+function provider_action(){
+    $("#loading").fadeIn("slow");
+    $.ajax({
+        type: "POST",
+        url: "/admin/provider_status",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            "status":0,
+            "provider_id":selected_provider,
+        },
+        dataType: 'json',
+        
+        success: function (data) {
+            console.log(data);
+            if(data.status == true){
+                $.toast({ text: data.message, heading: 'Success', icon: 'success', showHideTransition: 'fade', allowToastClose: true, hideAfter: 10000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+                $("#loading").fadeOut("slow");
+                $('#Confirmation_model').modal('hide');
+                location.reload();
+            }
+            else{  
+                $("#loading").fadeOut("slow");             
+                $.toast({ text: data.message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#F21915' });
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#loading").fadeOut("slow");
+            var response = jqXHR.responseText;
+            var obj = JSON.parse(response);
+            var message = obj.message;
+            $.toast({ text: message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+        }
+        }); 
+};   
+
+$('tr #provider_handle_off').click(function () {
+    $('#Provider_Table_List tbody').on('click', 'tr', function () {
+        selected_provider = $(this).closest("tr").find("td:eq(0) input").val();
+    });
+    if($("tr #provider_handle_off").prop('checked') == false){
+        $('#provider_handle_label_off').text('OFF');
+        var html = ' <div class="modal-header">'+
+        '<h5 class="modal-title" id="modalCenterTitle">Confirmation</h5>'+
+        '<button'+
+         ' type="button"'+
+          'class="btn-close"'+
+          'data-bs-dismiss="modal"'+
+          'aria-label="Close"'+
+          
+        '></button>'+
+      '</div>'+
+      '<div class="modal-body">'+
+       ' <div class="row">'+
+        '  <div class="col">'+
+         '   <center><h4>Do you want to continue?</h4></center><br>'+
+          '  <center><h6>All services related to this provider will be <strong>Turned OFF</strong> </h6></center>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="modal-footer">'+
+       ' <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">'+
+        'No, I Need'+
+        '</button>'+
+        '<button type="button" onclick=provider_action(); class="btn btn-primary">Yes, Proceed</button>'+
+      '</div>';
+        $('#Confirmation_model .modal-content').html(html);
+        $('#Confirmation_model').modal('show');
+     }else{
+        $('tr #provider_handle_label_on').text('ON');
+        var html = ' <div class="modal-header">'+
+        '<h5 class="modal-title" id="modalCenterTitle">Confirmation</h5>'+
+        '<button'+
+         ' type="button"'+
+          'class="btn-close"'+
+          'data-bs-dismiss="modal"'+
+          'aria-label="Close"'+
+          
+        '></button>'+
+      '</div>'+
+      '<div class="modal-body">'+
+       ' <div class="row">'+
+        '  <div class="col">'+
+         '   <center><h4>Need atleast one service to Turned ON this provider</h4></center><br>'+
+          '  <center><h6>Add service for this provider and try again</h6></center>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="modal-footer">'+
+        '<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>'+
+      '</div>';
+        $('#Confirmation_model .modal-content').html(html);
+        $('#Confirmation_model').modal('show');
+     }
+});
+
+$('tr #provider_handle_on').click(function () {
+    $('#Provider_Table_List tbody').on('click', 'tr', function () {
+        selected_provider = $(this).closest("tr").find("td:eq(0) input").val();
+    });
+    if($("tr #provider_handle_off").prop('checked') == false){
+        $('#provider_handle_label_off').text('OFF');
+        var html = ' <div class="modal-header">'+
+        '<h5 class="modal-title" id="modalCenterTitle">Confirmation</h5>'+
+        '<button'+
+         ' type="button"'+
+          'class="btn-close"'+
+          'data-bs-dismiss="modal"'+
+          'aria-label="Close"'+
+          
+        '></button>'+
+      '</div>'+
+      '<div class="modal-body">'+
+       ' <div class="row">'+
+        '  <div class="col">'+
+         '   <center><h4>Do you want to continue?</h4></center><br>'+
+          '  <center><h6>All services related to this provider will be <strong>Turned OFF</strong> </h6></center>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="modal-footer">'+
+       ' <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">'+
+        'No, I Need'+
+        '</button>'+
+        '<button type="button" onclick=provider_action(); class="btn btn-primary">Yes, Proceed</button>'+
+      '</div>';
+        $('#Confirmation_model .modal-content').html(html);
+        $('#Confirmation_model').modal('show');
+     }else{
+        $('tr #provider_handle_label_on').text('ON');
+        var html = ' <div class="modal-header">'+
+        '<h5 class="modal-title" id="modalCenterTitle">Confirmation</h5>'+
+        '<button'+
+         ' type="button"'+
+          'class="btn-close"'+
+          'data-bs-dismiss="modal"'+
+          'aria-label="Close"'+
+          
+        '></button>'+
+      '</div>'+
+      '<div class="modal-body">'+
+       ' <div class="row">'+
+        '  <div class="col">'+
+         '   <center><h4>Need atleast one service to Turned ON this provider</h4></center><br>'+
+          '  <center><h6>Add service for this provider and try again</h6></center>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="modal-footer">'+
+        '<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>'+
+      '</div>';
+        $('#Confirmation_model .modal-content').html(html);
+        $('#Confirmation_model').modal('show');
+     }
+});
+
+$("#selected_provider").click(function (){
+    window.history.back();
+});
 
 // provider page end 

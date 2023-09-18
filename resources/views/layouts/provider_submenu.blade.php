@@ -1,13 +1,7 @@
-<?php
+        <?php
 	function dynamicActiveLink($path){
 		$path_config = array(
-			'dashboard'		=> array('admin/dashboard'),
-            'dmt'		=> array('admin/dmt'),
-            'user'		=> array('admin/user'),
-            'api'		=> array('admin/api'),
-            'service'		=> array('admin/service'),
-            'provider'		=> array('admin/provider'),
-            'report'		=> array('admin/report'),
+            'services'		=> array('admin/provider/services'),
 		);
 		foreach($path_config as $key=> $val)
 		{
@@ -76,49 +70,34 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <!-- Dashboard -->
-        <li class="{{$current_path == 'dashboard' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('admin.dashboard')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-            </a>
-        </li>
-        <li class="{{$current_path == 'dmt' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('admin.dmt')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">DMT</div>
-            </a>
-        </li>
-        <li class="{{$current_path == 'user' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('admin.user')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Users</div>
-            </a>
-        </li>
-        <li class="{{$current_path == 'api' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('admin.api')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">API</div>
-            </a>
-        </li>
-        <li class="{{$current_path == 'service' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('admin.service')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Services</div>
-            </a>
-        </li>
-        <li class="{{$current_path == 'provider' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('admin.provider')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Providers</div>
-            </a>
-        </li>
-        <li class="{{$current_path == 'report' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('admin.report')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Report</div>
-            </a>
-        </li>
-</ul>
+           
+           
+
+            <!-- Layouts -->
+            <li class="menu-item active open">
+              <a href="{{route('admin.provider')}}" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">Providers</div>
+              </a>
+
+              <ul class="menu-sub">
+                <li class="{{$current_path != 'services' ? 'menu-item active' : 'menu-item'}}">
+                  <a id="selected_provider" class="menu-link">
+                    <div data-i18n="Without menu">Manage provider</div>
+                  </a>
+                </li>
+                <li class="{{$current_path == 'services' ? 'menu-item active' : 'menu-item'}}">
+                  <a href="{{route('admin.service_provider')}}" class="menu-link">
+                    <div data-i18n="Without navbar">Services</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+         
+           
+
+            
+          </ul>
 </aside>
 <!-- / Menu -->

@@ -1,18 +1,18 @@
 <div class="col-lg-12 col-md-12">
-                      <div class="Add_Provider_Btn">
+                      <div>
                         <!-- Button trigger modal -->
                         <button
                           type="button"
                           class="btn btn-primary"
                           data-bs-toggle="modal"
-                          data-bs-target="#Add_Provider_Model"
-
+                          data-bs-target="#Add_Service_Model"
+                          style="padding:2px 10px;"
                         >
-                         Add Provider
+                         Edit
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="Add_Provider_Model" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+                        <div class="modal fade" id="Add_Service_Model" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
