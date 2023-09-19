@@ -94,15 +94,93 @@ class ProviderController extends Controller
         }   
     }
 
-    public function manage_provider($provider_id){
-        // echo $provider_id;
-        return view('admin.service_provider.manage_provider')->with('data',$provider_id);
-        // return view('admin.service_provider.manage_provider');
+    public function manage_provider(Request $request){
+        try{
+            $tkn = str_replace("tkn=", "",$request->tkn);
+            if($tkn == ''){
+                return response()->json(["status"=>false ,'message'=>"Invalid request"]);
+            }
+            elseif(empty(provider::where(['provider_id'=>$tkn])->exists())){
+                return response()->json(["status"=>false ,'message'=>"Invalid action request"]);
+            }
+            else{
+                $manage_provider = provider::where(['provider_id'=>$tkn])->first();
+                return view('admin.service_provider.manage_provider')->with('data',$manage_provider);
+            }
+        }
+        catch(\Exception $exception){
+            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
+        } 
+        catch (\Illuminate\Database\QueryException $exception ){
+            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
+        }   
     }
 
     public function services(Request $request){
         // echo $provider_id;
         return view('admin.service_provider.services');
         // return view('admin.service_provider.manage_provider');
+    }
+
+    public function Edit_Provider(Request $request){
+        try{
+            $validate = Validator::make($request->all(), [
+                'provider_id'=> 'required|string|min:6|max:6',
+                'Provider_Name' => 'required|string|min:3|max:40',
+                'Provider_Email' => 'required|email|max:40',
+                'Provider_Mobile_Number' => 'required|numeric|digits:10',
+            ],);
+            if($validate->fails()){
+                return response()->json(["status"=>false , "message" => $validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            }
+            else if(empty(provider::where(['provider_id'=>$request->provider_id])->exists())){
+                return response()->json(["status"=>false , "message"=>'Provider Mismatch']);
+            }else{
+                $name = true;
+                $email = true;
+                $phone = true;
+                $edit_provider = provider::where(['provider_id'=>$request->provider_id])->first();
+                if($edit_provider->provider_name != $request->Provider_Name){
+                    $name = false;
+                    if(!empty(provider::where(['provider_name'=>$request->Provider_Name])->exists())){
+                        return response()->json(["status"=>false , "message"=>'Provider Name already exists']);
+                    }
+                    else{
+                        $edit_provider->provider_name = $request->Provider_Name;
+                    }
+                }
+                else if($edit_provider->provider_email != $request->Provider_Email){
+                    $email = false;
+                    if(!empty(provider::where(['provider_email'=>$request->Provider_Email])->exists())){
+                        return response()->json(["status"=>false , "message"=>'Provider Email already exists']);
+                    }
+                    else{
+                        $edit_provider->provider_email = $request->Provider_Email;
+                    }
+                }
+                else if($edit_provider->provider_mobile != $request->Provider_Mobile_Number){
+                    $phone = false;
+                    if(!empty(provider::where(['provider_mobile'=>$request->Provider_Mobile_Number])->exists())){
+                        return response()->json(["status"=>false , "message"=>'Provider Mobile Number already exists']);
+                    }
+                    else{
+                        $edit_provider->provider_mobile = $request->Provider_Mobile_Number;
+                    }
+                }
+                if($name == true && $email == true && $phone == true){
+                    return response()->json(["status"=>false, "message"=>'No changes Made for this provider']);
+                }
+                else{
+                    $edit_provider->update();
+                    return response()->json(["status"=>true , "message"=>'Provider updated successfully']);
+                }                
+            }     
+        }
+        catch(\Exception $exception){
+            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
+        } 
+        catch (\Illuminate\Database\QueryException $exception ){
+            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
+        }   
     }
 }

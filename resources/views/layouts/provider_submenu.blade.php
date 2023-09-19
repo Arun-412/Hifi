@@ -75,20 +75,20 @@
 
             <!-- Layouts -->
             <li class="menu-item active open">
-              <a href="{{route('admin.provider')}}" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+              <a href="{{route('admin.provider')}}" class="menu-link ">
+              <i class='bx bx-arrow-back'></i>
                 <div data-i18n="Layouts">Providers</div>
               </a>
 
               <ul class="menu-sub">
                 <li class="{{$current_path != 'services' ? 'menu-item active' : 'menu-item'}}">
-                  <a id="selected_provider" class="menu-link">
-                    <div data-i18n="Without menu">Manage provider</div>
+                  <a href="provider/" id="selected_provider" class="menu-link">
+                    <div>Manage provider</div>
                   </a>
                 </li>
                 <li class="{{$current_path == 'services' ? 'menu-item active' : 'menu-item'}}">
-                  <a href="{{route('admin.service_provider')}}" class="menu-link">
-                    <div data-i18n="Without navbar">Services</div>
+                  <a href="/services" class="menu-link">
+                    <div>Services {{ app('request')->input('tkn') }} {{request()->get('tkn')}}</div>
                   </a>
                 </li>
               </ul>

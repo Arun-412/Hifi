@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('#provider_name_check').hide();
     $('#provider_email_check').hide();
     $('#provider_mobile_check').hide();
+    $("#provider_edit_cancel").hide();
 });
 
 // before page load end
@@ -192,6 +193,7 @@ $('tr #provider_handle_off').click(function () {
     $('#Provider_Table_List tbody').on('click', 'tr', function () {
         selected_provider = $(this).closest("tr").find("td:eq(0) input").val();
     });
+    localStorage.setItem("pid",selected_provider);
     if($("tr #provider_handle_off").prop('checked') == false){
         $('#provider_handle_label_off').text('OFF');
         var html = ' <div class="modal-header">'+
@@ -252,6 +254,7 @@ $('tr #provider_handle_on').click(function () {
     $('#Provider_Table_List tbody').on('click', 'tr', function () {
         selected_provider = $(this).closest("tr").find("td:eq(0) input").val();
     });
+    localStorage.setItem("pid",selected_provider);
     if($("tr #provider_handle_off").prop('checked') == false){
         $('#provider_handle_label_off').text('OFF');
         var html = ' <div class="modal-header">'+
@@ -309,7 +312,77 @@ $('tr #provider_handle_on').click(function () {
 });
 
 $("#selected_provider").click(function (){
-    window.history.back();
+    window.location.href = "admin/manage_provider/040f30";
 });
 
-// provider page end 
+$("#provider_edit").click(function () {
+    $("#provider_edit").hide();
+    $("#Edit_Provider").show();
+    $("#provider_edit_cancel").show();
+    $("#Provider_Name").prop('disabled', false);
+    $("#Provider_Email").prop('disabled', false);
+    $("#Provider_Mobile_Number").prop('disabled', false);
+});
+
+$("#provider_edit_cancel").click(function () {
+    $("#provider_edit").show();
+    $("#Edit_Provider").hide();   
+    $("#provider_edit_cancel").hide();
+    $("#Provider_Name").prop('disabled', true);
+    $("#Provider_Email").prop('disabled', true);
+    $("#Provider_Mobile_Number").prop('disabled', true);
+});
+
+$("#Edit_Provider").on('click', function () {
+    provider_name_validation();
+    provider_email_validation();
+    provider_mobile_validation();
+    if (
+        Provider_Name_Error == false &&
+        Provider_Email_Error == false &&
+        Provider_Mobile_Error == false
+    ) {
+        Edit_Provider ();
+    } else {
+        return false;
+    }
+});
+
+function Edit_Provider () { 
+    $("#loading").fadeIn("slow");
+    $.ajax({
+    type: "PUT",
+    url: "/admin/edit_provider",
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+        "provider_id":$("#provider_id").val(),
+        "Provider_Name":$("#Provider_Name").val(),
+        "Provider_Email":$("#Provider_Email").val(),
+        "Provider_Mobile_Number":$("#Provider_Mobile_Number").val(),
+    },
+    dataType: 'json',
+    
+    success: function (data) {
+        console.log(data);
+        if(data.status == true){
+            $.toast({ text: data.message, heading: 'Success', icon: 'success', showHideTransition: 'fade', allowToastClose: true, hideAfter: 10000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+            $("#loading").fadeOut("slow");
+            location.reload();
+        }
+        else{  
+            $("#loading").fadeOut("slow");             
+            $.toast({ text: data.message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#F21915' });
+        }
+    },
+    error: function (jqXHR, exception) {
+        $("#loading").fadeOut("slow");
+        var response = jqXHR.responseText;
+        var obj = JSON.parse(response);
+        var message = obj.message;
+        $.toast({ text: message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+    }
+    }); 
+}
+// provider page end
