@@ -78,7 +78,25 @@ class ServiceController extends Controller
 
     public function manage_service($pid,$sid) {
         try{
-            return response()->json(["status"=>true , "message"=>'successfully']);
+            if(!empty(provider::where(['provider_id'=>$pid])->exists())){
+                $provider = provider::where(['provider_id'=>$pid])->first();
+                $data['provider_name'] = $provider->provider_name;
+            }
+            if(!empty(service::where(['service_id'=>$sid])->exists())){
+                $service = service::where(['service_id'=>$sid])->first();
+                $data['service_name'] = $service->service_name;
+                $data['status'] = $service->status;
+                if(!empty(service_type::where(['service_type_id'=>$service->service_type])->exists())){
+                    $service_type = service_type::where(['service_type_id'=>$service->service_type])->first();
+                    $data['service_type'] = $service_type->service_type_name;
+                }
+            }
+            // $services = service::orderBy('id', 'DESC')->where(['provider_id'=>$tkn])->get();
+            $data['provider_id'] = $pid;
+            $data['service_id'] = $sid;
+            // return view('admin.service_provider.services')->with('data',$data);  
+            return view('admin.service_provider.manage_service')->with('data',$data);  
+            // return response()->json(["status"=>true , "message"=>'successfully']);
         }
         catch(\Exception $exception){
             return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);

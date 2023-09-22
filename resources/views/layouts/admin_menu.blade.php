@@ -110,7 +110,7 @@
         <li class="{{$current_path == 'provider' ? 'menu-item active' : 'menu-item'}}">
             <a href="{{route('admin.provider')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Providers</div>
+                <div data-i18n="Basic">Service Providers</div>
             </a>
         </li>
         <li class="{{$current_path == 'report' ? 'menu-item active' : 'menu-item'}}">

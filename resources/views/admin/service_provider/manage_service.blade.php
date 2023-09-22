@@ -64,17 +64,17 @@
             <li class="menu-item active open">
               <a href="{{route('admin.provider')}}" class="menu-link ">
               <i class='bx bx-arrow-back'></i>
-                <div data-i18n="Layouts"><strong style="font-size:22px;">{{$data->service_name}}</strong></div>
+                <div data-i18n="Layouts"><strong style="font-size:22px;">{{$data['service_name']}}</strong></div>
               </a>
 
               <ul class="menu-sub">
                 <li class="menu-item active">
-                  <a href="{{ url('/admin/provider')}}{{'/'.$data->provider_id}}" class="menu-link">
+                  <a href="{{ url('/admin/provider')}}{{'/'.$data['provider_id']}}" class="menu-link">
                     <div>Manage Service</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{ url('/admin')}}{{'/'.$data->provider_id.'/services'}}" class="menu-link">
+                  <a href="{{ url('/admin')}}{{'/'.$data['provider_id'].'/services'}}" class="menu-link">
                     <div>Fees</div>
                   </a>
                 </li>
@@ -95,12 +95,12 @@
               <div class="row">
                 <div class="col-md-12">
 <div class="card mb-4">
-<h5 class="card-header">Manage Service</h5>
+<h5 class="card-header">Manage Service - ( {{$data['provider_name']}} / {{$data['service_name']}} )</h5>
                     <!-- Account -->
                     <hr class="my-0" />
                     <div class="card-body">
                     <div class="Add_Provider_Btn">
-                    @if($data->status == 1)
+                    @if($data['status'] == 1)
                           
                           <div class="form-check form-switch mt-1">
                             <strong><label class="form-check-label" id="provider_handle_label_on" for="provider_handle">ON</label></strong>
@@ -122,59 +122,46 @@
 
                   
                                   <div class="col col-md-12 col-lg-4 mb-3">
-                                    <input type="hidden" id="provider_id"  value="{{$data->provider_id}}">
-                                    <label for="nameWithTitle" class="form-label">Provider Name</label>
+                                    <input type="hidden" id="service_id"  value="{{$data['service_id']}}">
+                                    <label for="nameWithTitle" class="form-label">Service Name</label>
                                     <input
                                       autocomplete="off"
                                       minlength="3" disabled
                                       maxlength="40"
                                       type="text"
-                                      id="Provider_Name"
+                                      id="service_Name"
                                       class="form-control"
-                                      placeholder="Enter Provider Name"
-                                      value="{{$data->provider_name}}"
+                                      placeholder="Enter service Name"
+                                      value="{{$data['service_name']}}"
                                     />
-                                    <small id="provider_name_check" class="validate"></small>
+                                    <small id="service_name_check" class="validate"></small>
                                   </div>
                                
                                 
                                   <div class="col col-md-12 col-lg-3 mb-0">
-                                    <label for="emailWithTitle" class="form-label">Provider Email</label>
+                                    <label for="emailWithTitle" class="form-label">Service Type</label>
                                     <input
                                       autocomplete="off"
                                       minlength="3" disabled
                                       maxlength="40"
                                       type="text"
-                                      id="Provider_Email"
+                                      id="service_Email"
                                       class="form-control"
-                                      placeholder="Enter Provider Email"
-                                      value="{{$data->provider_email}}"
+                                      placeholder="Enter service Email"
+                                      value="{{$data['service_type']}}"
                                     />
-                                    <small id="provider_email_check" class="validate"></small>
+                                    <small id="service_email_check" class="validate"></small>
                                   </div>
-                                  <div class="col col-md-12 col-lg-3 mb-0">
-                                    <label for="dobWithTitle" class="form-label">Provider Mobile Number</label>
-                                    <input disabled
-                                      autocomplete="off"
-                                      minlength="10"
-                                      maxlength="10"
-                                      type="text"
-                                      id="Provider_Mobile_Number"
-                                      class="form-control"
-                                      placeholder="Enter Provider Mobile Number"
-                                      value="{{$data->provider_mobile}}"
-                                    />
-                                    <small id="provider_mobile_check" class="validate"></small>
-                                  </div>
+                                 
                                   <div class="col col-md-12 col-lg-2 ">
                                   <button
-                          type="button" id="provider_edit_cancel"
+                          type="button" id="service_edit_cancel"
                           class="btn btn-outline-danger" style="margin-top:28px !important;display:none;"
                         >
                          X
                         </button> 
                                   <button
-                          type="button" id="provider_edit"
+                          type="button" id="service_edit"
                           class="btn btn-primary" style="margin-top:28px !important;"
                         >
                          Edit
