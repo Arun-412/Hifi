@@ -29,9 +29,12 @@ Route::get('/admin/dmt',  ['as'=>'admin.dmt','uses'=>'PageController@admin_dmt']
 Route::get('/admin/user',  ['as'=>'admin.user','uses'=>'PageController@admin_user']);
 Route::get('/admin/api',  ['as'=>'admin.api','uses'=>'PageController@admin_api']);
 Route::get('/admin/service',  ['as'=>'admin.service','uses'=>'PageController@admin_service']);
+Route::get('/admin/{pid}/service/{sid}',  ['as'=>'admin.manage_service','uses'=>'admin\ServiceController@manage_service']);
+Route::get('/admin/service_types',  ['as'=>'admin.service_types','uses'=>'admin\ServiceController@service_types']);
+Route::post('/admin/add_service',  ['as'=>'admin.add_service','uses'=>'admin\ServiceController@add_service']);
 Route::get('/admin/provider',  ['as'=>'admin.provider','uses'=>'admin\ProviderController@admin_provider']);
-Route::get('/admin/{tkn?}/services',  ['as'=>'admin.service_provider','uses'=>'admin\ProviderController@services']);
-Route::get('/admin/provider/{tkn?}',  ['as'=>'admin.manage_provider','uses'=>'admin\ProviderController@manage_provider']);
+Route::get('/admin/{tkn}/services',  ['as'=>'admin.service_provider','uses'=>'admin\ServiceController@services']);
+Route::get('/admin/provider/{tkn}',  ['as'=>'admin.manage_provider','uses'=>'admin\ProviderController@manage_provider']);
 Route::post('/admin/add_provider',  ['as'=>'admin.add_provider','uses'=>'admin\ProviderController@add_provider']);
 Route::put('/admin/edit_provider',  ['as'=>'admin.edit_provider','uses'=>'admin\ProviderController@edit_provider']);
 Route::post('/admin/provider_status',  ['as'=>'admin.provider_status','uses'=>'admin\ProviderController@provider_status']);
