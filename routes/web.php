@@ -30,6 +30,7 @@ Route::get('/admin/user',  ['as'=>'admin.user','uses'=>'PageController@admin_use
 Route::get('/admin/api',  ['as'=>'admin.api','uses'=>'PageController@admin_api']);
 Route::get('/admin/service',  ['as'=>'admin.service','uses'=>'PageController@admin_service']);
 Route::get('/admin/{pid}/service/{sid}',  ['as'=>'admin.manage_service','uses'=>'admin\ServiceController@manage_service']);
+Route::get('/admin/{pid}/{sid}/fee',  ['as'=>'admin.manage_fee','uses'=>'admin\ServiceController@manage_fee']);
 Route::get('/admin/service_types',  ['as'=>'admin.service_types','uses'=>'admin\ServiceController@service_types']);
 Route::post('/admin/add_service',  ['as'=>'admin.add_service','uses'=>'admin\ServiceController@add_service']);
 Route::get('/admin/provider',  ['as'=>'admin.provider','uses'=>'admin\ProviderController@admin_provider']);
