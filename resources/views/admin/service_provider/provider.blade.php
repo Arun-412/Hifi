@@ -46,7 +46,7 @@
                         </div>
                           </td>
                           @endif
-                          <td><a href="provider/tkn={{$provider['provider_id']}}" id="provider_action_id" class="menu-link">Edit</td>
+                          <td><a href="provider/{{$provider['provider_id']}}" class="menu-link">Edit</td>
                         </tr>
                       @endforeach                   
                     </tbody>

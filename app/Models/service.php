@@ -11,10 +11,15 @@ class service extends Model
     protected $table = 'services';
 	public $timestamps = true;
 	protected $fillable = [
-        "user_id",
-        "service_name",
-        "provider_name",
-        "fees",
+        "provider_id",
+        "service_id",
+        "service_type",
+        "service_name	",
         "status" 
 	];
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
 }

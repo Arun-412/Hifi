@@ -193,7 +193,6 @@ $('tr #provider_handle_off').click(function () {
     $('#Provider_Table_List tbody').on('click', 'tr', function () {
         selected_provider = $(this).closest("tr").find("td:eq(0) input").val();
     });
-    localStorage.setItem("pid",selected_provider);
     if($("tr #provider_handle_off").prop('checked') == false){
         $('#provider_handle_label_off').text('OFF');
         var html = ' <div class="modal-header">'+
@@ -254,7 +253,6 @@ $('tr #provider_handle_on').click(function () {
     $('#Provider_Table_List tbody').on('click', 'tr', function () {
         selected_provider = $(this).closest("tr").find("td:eq(0) input").val();
     });
-    localStorage.setItem("pid",selected_provider);
     if($("tr #provider_handle_off").prop('checked') == false){
         $('#provider_handle_label_off').text('OFF');
         var html = ' <div class="modal-header">'+
@@ -309,10 +307,6 @@ $('tr #provider_handle_on').click(function () {
         $('#Confirmation_model .modal-content').html(html);
         $('#Confirmation_model').modal('show');
      }
-});
-
-$("#selected_provider").click(function (){
-    window.location.href = "admin/manage_provider/040f30";
 });
 
 $("#provider_edit").click(function () {
@@ -386,3 +380,126 @@ function Edit_Provider () {
     }); 
 }
 // provider page end
+
+// service page start 
+
+$("#fetch_service_type").click( function () { 
+    $("#service_type option").remove();
+    $.ajax({
+        type: "GET",
+        url: "/admin/service_types",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        dataType: 'json',
+        success: function (data) {
+            if(data.status == true){
+                $("#service_type").append("<option selected disabled value='0'>Select Service Type</option>");
+                $.each(data.message, function(i,j) {
+                    $("#service_type").append("<option value="+j['service_type_id']+">"+j['service_type_name']+"</option>");
+                });
+            }
+            else{ 
+                $("#Add_Service_Model").modal('hide');
+                $("#loading").fadeOut("slow");             
+                $.toast({ text: data.message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#F21915' });
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#Add_Service_Model").modal('hide');
+            $("#loading").fadeOut("slow");
+            var response = jqXHR.responseText;
+            var obj = JSON.parse(response);
+            var message = obj.message;
+            $.toast({ text: message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+        }
+    }); 
+});
+
+let Service_Name_Error = false;
+let Service_Type_Error = false;
+
+$("#Service_Name").keyup(function () {
+    service_name_validation();
+});
+
+$("#service_type").change(function () {
+    service_type_validation();
+});
+
+$("#Add_Service").click(function () {
+    service_name_validation();
+    service_type_validation();
+    if (
+        Service_Name_Error == false &&
+        Service_Type_Error == false
+    ) {
+        Add_Service();
+    } else {
+        return false;
+    }
+});
+
+function service_name_validation () {
+    var service_name = $('#Service_Name').val();
+    if(service_name.length == 0){
+        Service_Name_Error = true;
+        $('#service_name_check').show();
+        $('#service_name_check').text('Please Enter Service Name');
+    }else if(service_name.length < 3 || service_name.length > 40){
+        Service_Name_Error = true;
+        $('#service_name_check').show();
+        $('#service_name_check').text('Length of service name must be between 3 and 40');
+    }else{
+        Service_Name_Error = false;
+        $('#service_name_check').hide();
+    }
+}
+
+function service_type_validation () {
+    var service_type = $('#service_type').find(":selected").val();
+    if(service_type == 0){
+        Service_Type_Error = true;
+        $('#service_type_check').show();
+        $('#service_type_check').text('Please Select Service Type');
+    }else{
+        Service_Type_Error = false;
+        $('#service_type_check').hide();
+    }
+}
+
+function Add_Service () {
+    $("#loading").fadeIn("slow");
+    $.ajax({
+        type: "POST",
+        url: "/admin/add_service",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            "service_type":$('#service_type').find(":selected").val(),
+            "service_name":$('#Service_Name').val(),
+            "provider_id":$("#s_provider_id").val(),
+        },
+        dataType: 'json',
+        success: function (data) {
+            if(data.status == true){
+                $("#loading").fadeOut("slow");
+                $.toast({ text: data.message, heading: 'Success', icon: 'success', showHideTransition: 'fade', allowToastClose: true, hideAfter: 10000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+                location.reload();
+            }
+            else{  
+                $("#loading").fadeOut("slow");             
+                $.toast({ text: data.message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#F21915' });
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#loading").fadeOut("slow");
+            var response = jqXHR.responseText;
+            var obj = JSON.parse(response);
+            var message = obj.message;
+            $.toast({ text: message, heading: 'Error', icon: 'error', showHideTransition: 'fade', allowToastClose: true, hideAfter: 5000, stack: 5, position: 'top-right', textAlign: 'left', loader: true, loaderBg: '#9EC600' });
+        }
+    }); 
+}
+// service page end 

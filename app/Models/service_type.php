@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class provider extends Model
+class service_type extends Model
 {
     use HasFactory;
-    protected $table = 'providers';
+    protected $table = 'service_type';
 	public $timestamps = true;
 	protected $fillable = [
-        "user_id",
-        "provider_name",
-        "provider_email",
-        "provider_mobile",
-        "status" 
+        "service_type_id",
+        "service_type_name",
+        "service_type_status",
 	];
     protected $hidden = [
         'id',

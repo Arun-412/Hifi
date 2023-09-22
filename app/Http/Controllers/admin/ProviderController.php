@@ -94,9 +94,8 @@ class ProviderController extends Controller
         }   
     }
 
-    public function manage_provider(Request $request){
+    public function manage_provider($tkn){
         try{
-            $tkn = str_replace("tkn=", "",$request->tkn);
             if($tkn == ''){
                 return response()->json(["status"=>false ,'message'=>"Invalid request"]);
             }
@@ -114,12 +113,6 @@ class ProviderController extends Controller
         catch (\Illuminate\Database\QueryException $exception ){
             return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
         }   
-    }
-
-    public function services(Request $request){
-        // echo $provider_id;
-        return view('admin.service_provider.services');
-        // return view('admin.service_provider.manage_provider');
     }
 
     public function Edit_Provider(Request $request){

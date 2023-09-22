@@ -64,18 +64,18 @@
             <li class="menu-item active open">
               <a href="{{route('admin.provider')}}" class="menu-link ">
               <i class='bx bx-arrow-back'></i>
-                <div data-i18n="Layouts"><strong style="font-size:22px;">{{$data->provider_name}}</strong></div>
+                <div data-i18n="Layouts"><strong style="font-size:22px;">{{$data->service_name}}</strong></div>
               </a>
 
               <ul class="menu-sub">
                 <li class="menu-item active">
                   <a href="{{ url('/admin/provider')}}{{'/'.$data->provider_id}}" class="menu-link">
-                    <div>Manage provider</div>
+                    <div>Manage Service</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="{{ url('/admin')}}{{'/'.$data->provider_id.'/services'}}" class="menu-link">
-                    <div>Services</div>
+                    <div>Fees</div>
                   </a>
                 </li>
               </ul>
@@ -95,7 +95,7 @@
               <div class="row">
                 <div class="col-md-12">
 <div class="card mb-4">
-<h5 class="card-header">Manage Provider</h5>
+<h5 class="card-header">Manage Service</h5>
                     <!-- Account -->
                     <hr class="my-0" />
                     <div class="card-body">
