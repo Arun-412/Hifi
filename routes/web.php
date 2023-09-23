@@ -26,6 +26,10 @@ Route::post('/verifyUser',  ['as'=>'auth.verifyUser','uses'=>'auth\UserControlle
 
 Route::get('/admin/dashboard',  ['as'=>'admin.dashboard','uses'=>'PageController@admin_dashboard']);
 Route::get('/admin/dmt',  ['as'=>'admin.dmt','uses'=>'PageController@admin_dmt']);
+Route::get('/admin/dmt-1',  ['as'=>'admin.dmt-1','uses'=>'DmtPlanController@admin_dmt_1']);
+Route::get('/admin/dmt-2',  ['as'=>'admin.dmt-2','uses'=>'DmtPlanController@admin_dmt_2']);
+Route::get('/admin/transaction',  ['as'=>'admin.transaction','uses'=>'PaymentController@transaction']);
+Route::post('/admin/payment',  ['as'=>'admin.payment','uses'=>'PaymentController@payment']);
 Route::get('/admin/user',  ['as'=>'admin.user','uses'=>'PageController@admin_user']);
 Route::get('/admin/api',  ['as'=>'admin.api','uses'=>'PageController@admin_api']);
 Route::get('/admin/service',  ['as'=>'admin.service','uses'=>'PageController@admin_service']);

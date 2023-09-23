@@ -3,6 +3,9 @@
 		$path_config = array(
 			'dashboard'		=> array('admin/dashboard'),
             'dmt'		=> array('admin/dmt'),
+            'dmt-1'		=> array('admin/dmt-1'),
+            'dmt-2'		=> array('admin/dmt-2'),
+            'transaction'=> array('admin/transaction'),
             'user'		=> array('admin/user'),
             'api'		=> array('admin/api'),
             'service'		=> array('admin/service'),
@@ -87,6 +90,24 @@
             <a href="{{route('admin.dmt')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">DMT</div>
+            </a>
+        </li>
+        <li class="{{$current_path == 'dmt-1' ? 'menu-item active' : 'menu-item'}}">
+            <a href="{{route('admin.dmt-1')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Distributer Fee</div>
+            </a>
+        </li>
+        <li class="{{$current_path == 'dmt-2' ? 'menu-item active' : 'menu-item'}}">
+            <a href="{{route('admin.dmt-2')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Retailer Fee</div>
+            </a>
+        </li>
+        <li class="{{$current_path == 'transaction' ? 'menu-item active' : 'menu-item'}}">
+            <a href="{{route('admin.transaction')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Transaction</div>
             </a>
         </li>
         <li class="{{$current_path == 'user' ? 'menu-item active' : 'menu-item'}}">
