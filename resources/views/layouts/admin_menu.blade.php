@@ -7,6 +7,7 @@
             'dmt-2'		=> array('admin/dmt-2'),
             'transaction'=> array('admin/transaction'),
             'money_transfer_report'=> array('admin/money_transfer_report'),
+            'distributer_report'=> array('admin/distributer_report'),
             'user'		=> array('admin/user'),
             'api'		=> array('admin/api'),
             'service'		=> array('admin/service'),
@@ -115,6 +116,12 @@
             <a href="{{route('admin.money_transfer_report')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Money Transfer Report</div>
+            </a>
+        </li>
+        <li class="{{$current_path == 'distributer_report' ? 'menu-item active' : 'menu-item'}}">
+            <a href="{{route('admin.distributer_report')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Distributer Report</div>
             </a>
         </li>
         <li class="{{$current_path == 'user' ? 'menu-item active' : 'menu-item'}}">

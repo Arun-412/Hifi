@@ -11,6 +11,7 @@ use App\Models\user;
 use App\Models\admin_wallet;
 use App\Models\money_transfer_report;
 use App\Models\account_detail;
+use App\Models\distributer_report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Redirect;
@@ -40,16 +41,29 @@ class PaymentController extends Controller
                 $admin_wallet = admin_wallet::where(['user_id'=>$distributer_user['managed_by']])->first();
                 $retailer_fee = $get_retailer_fee->fee + $request->amount;
                 if($retailer_wallet['balance'] > $retailer_fee){
+                    $distributer_report = new distributer_report;
                     $retailer_wallet['balance'] = $retailer_wallet['balance'] - $retailer_fee;
                     $retailer_wallet->save();
                     $distributer_commission = $get_retailer_fee->fee - $get_distributer_fee->fee;
+                    $distributer_report['o_balance'] = $distributer_wallet['balance'];
+                    $distributer_report['commission'] = $distributer_commission  ;
                     $distributer_wallet['balance'] = $distributer_wallet['balance'] + $distributer_commission;
                     $distributer_wallet->save();
+                    $distributer_report['c_balance'] = $distributer_wallet['balance'];
                     $admin_wallet['balance'] = $admin_wallet['balance'] + $get_distributer_fee->fee;
                     $admin_wallet->save();
                     $actual_transaction = $request->amount + $get_admin_fee->fee;
                     $admin_wallet['balance'] = $admin_wallet['balance'] - $actual_transaction;
                     $admin_wallet->save();
+                    
+                    $distributer_report['user_id'] = 1;
+                    $distributer_report['retailer_id'] = 21;
+                    $distributer_report['service_id'] = 1;
+                    $distributer_report['service_detail_id'] = 12;
+                    $distributer_report['amount'] = $request->amount;
+                    $distributer_report['status'] = 1;
+                    $distributer_report->save();
+                   
                     $money_transfer_report = new money_transfer_report;
                     $money_transfer_report['user_id'] = $retail_user['id'];
                     $money_transfer_report['account_id'] = 1;

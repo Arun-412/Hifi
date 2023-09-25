@@ -30,6 +30,7 @@ Route::get('/admin/dmt-1',  ['as'=>'admin.dmt-1','uses'=>'DmtPlanController@admi
 Route::get('/admin/dmt-2',  ['as'=>'admin.dmt-2','uses'=>'DmtPlanController@admin_dmt_2']);
 Route::get('/admin/transaction',  ['as'=>'admin.transaction','uses'=>'PaymentController@transaction']);
 Route::get('/admin/print/{tid}',  ['as'=>'admin.print','uses'=>'ReportController@print']);
+Route::get('/admin/distributer_report',  ['as'=>'admin.distributer_report','uses'=>'ReportController@distributer_report']);
 Route::get('/admin/money_transfer_report',  ['as'=>'admin.money_transfer_report','uses'=>'ReportController@money_transfer']);
 Route::post('/admin/payment',  ['as'=>'admin.payment','uses'=>'PaymentController@payment']);
 Route::post('/admin/add_account',  ['as'=>'admin.add_account','uses'=>'PaymentController@add_account']);
