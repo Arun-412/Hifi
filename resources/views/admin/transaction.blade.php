@@ -21,6 +21,13 @@
                   <input type="text" name="amount" id="amount">
                   <button type="submit" id="R_transaction">Pay</button>
                   </form>
+                  <h2>Add Account</h2>
+                  <form action="{{route('admin.add_account')}}" method="post">
+                    @csrf
+                    <input type="text" name="bank_id" id="bank_id">
+                  <input type="text" name="account_number" id="account_number">
+                  <button type="submit" id="add_account">Add</button>
+                  </form>
                 </div>
               </div>
             </div>

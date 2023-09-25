@@ -9,6 +9,8 @@ use App\Models\retailer_wallet;
 use App\Models\distributer_wallet;
 use App\Models\user;
 use App\Models\admin_wallet;
+use App\Models\money_transfer_report;
+use App\Models\account_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Redirect;
@@ -37,7 +39,6 @@ class PaymentController extends Controller
                 $retailer_wallet = retailer_wallet::where(['user_id'=>$retail_user['id']])->first();
                 $admin_wallet = admin_wallet::where(['user_id'=>$distributer_user['managed_by']])->first();
                 $retailer_fee = $get_retailer_fee->fee + $request->amount;
-                
                 if($retailer_wallet['balance'] > $retailer_fee){
                     $retailer_wallet['balance'] = $retailer_wallet['balance'] - $retailer_fee;
                     $retailer_wallet->save();
@@ -49,9 +50,20 @@ class PaymentController extends Controller
                     $actual_transaction = $request->amount + $get_admin_fee->fee;
                     $admin_wallet['balance'] = $admin_wallet['balance'] - $actual_transaction;
                     $admin_wallet->save();
+                    $money_transfer_report = new money_transfer_report;
+                    $money_transfer_report['user_id'] = $retail_user['id'];
+                    $money_transfer_report['account_id'] = 1;
+                    $money_transfer_report['transaction_id'] = 12;
+                    $money_transfer_report['transaction_details'] = 212;
+                    $money_transfer_report['amount'] = $request->amount;
+                    $money_transfer_report['status'] = 'Success';
+                    $money_transfer_report->save();
                     $data['r'] = $retailer_wallet['balance'];
                     $data['d'] = $distributer_wallet['balance'];
                     $data['a'] = $admin_wallet['balance'];
+
+
+
                     return response()->json(["status"=>true ,'message'=> $data]);
                 }else{
                     return response()->json(["status"=>false ,'message'=> 'Insufficient Balance']);
@@ -65,6 +77,41 @@ class PaymentController extends Controller
        catch (\Illuminate\Database\QueryException $exception ){
            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
        }   
+    }
+
+    public function add_account(Request $request) {
+        try{
+            //  $validate = Validator::make($request->all(), [
+                // 'user_id' => 'required|string|min:6|max:6',
+                // 'bank_id' => 'required|string|min:6|max:6',
+            //     'account_number' => 'required|string|between:8,16',
+            // ],);
+            // if($validate->fails()){
+            //     return response()->json(["status"=>false , "message" => $validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            // }
+            // else{
+                // $account = account_detail::where(['user_id'=>$request->user_id],['bank_id'=>$request->bank_id],['account_number'=>$request->account_number])->first();
+                if(!empty(account_detail::where(['user_id'=>$request->user_id],['bank_id'=>$request->bank_id],['account_number'=>$request->account_number])->exists())){
+                    return response()->json(["status"=>false ,'message'=> 'Bank Account Number Already Exists']);
+                }else{
+                    $add_account = new account_detail;
+                    $add_account->user_id = 1;
+                    $add_account->bank_id = 23;
+                    $add_account->account_number = $request->account_number;
+                    $add_account->verified = 0;
+                    $add_account->status = 1;
+                    $add_account->save();
+                    return response()->json(["status"=>true ,'message'=> 'Bank Account Number Added SuccessFully']);
+                }
+                
+            // }
+        }
+        catch(\Exception $exception){
+            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
+        } 
+        catch (\Illuminate\Database\QueryException $exception ){
+            return response()->json(["status"=>false ,'message'=>$exception->getMessage()]);
+        }  
     }
 }
 ?>

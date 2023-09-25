@@ -32,7 +32,12 @@ $(document).ready(function () {
     $("#manage_Distributor").hide();
     $("#d_profile_form :input").prop("disabled", true);
     $("#d_profile_action :input").prop("disabled", false);
+});
 
+$("#print").click(function(){
+  $('button').hide();
+	window.print();
+	$('button').show();
 });
 
 let usernameError = true;
