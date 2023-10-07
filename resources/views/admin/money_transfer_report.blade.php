@@ -32,7 +32,7 @@
                     <tbody class="table-border-bottom-0">
                     @foreach($data['money_transfer'] as $d)
                       <tr>
-                        <td>{{$d['created_at']}}</td>
+                        <td>{{date("d-m-Y - g:i:s A", strtotime($d['created_at']))}}</td>
                         <td>{{$d['transaction_id']}}</td>
                         <td>Axis Bank</td>
                         <td>83882382398238</td>
